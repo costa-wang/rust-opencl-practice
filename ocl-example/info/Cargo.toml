@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 ocl = { version = "0.19.4" }
-ocl = { version = "0.19.4" }
+colorify = { version = "0.2.3" }
