@@ -190,3 +190,119 @@ pub fn main() {
         Err(err) => println!("{}", err),
     }
 }
+
+// Platform { 
+//     Profile: Ok(FULL_PROFILE), 
+//     Version: Ok(OpenCL 2.0), 
+//     Name: Ok(Intel(R) OpenCL), 
+//     Vendor: Ok(Intel(R) Corporation), 
+//     Extensions: Ok(
+//         cl_khr_icd 
+//         cl_khr_global_int32_base_atomics 
+//         cl_khr_global_int32_extended_atomics 
+//         cl_khr_local_int32_base_atomics 
+//         cl_khr_local_int32_extended_atomics 
+//         cl_khr_byte_addressable_store 
+//         cl_khr_depth_images 
+//         cl_khr_3d_image_writes 
+//         cl_intel_exec_by_local_thread 
+//         cl_khr_spir cl_khr_fp64 
+//         cl_khr_image2d_from_buffer) 
+// } 
+// { Total Device Count: 1 }
+// Device (terse) { 
+//     Name: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz, 
+//     Vendor: Intel(R) Corporation 
+// }
+// Context { 
+//     ReferenceCount: Ok(1), 
+//     Devices: Ok([DeviceId(0x5584ae671898)]), 
+//     Properties: Ok(ContextProperties { 
+//         props: {Platform: Platform(PlatformId(0x5584ae658b50))}, 
+//         contains_gl_context_or_sharegroup: false }), 
+//     NumDevices: Ok(1) 
+// }
+// Queue { 
+//     Context: Ok(Context(0x5584ae64f138)), 
+//     Device: Ok(DeviceId(0x5584ae671898)), 
+//     ReferenceCount: Ok(4), 
+//     Properties: Ok(PROFILING_ENABLE) 
+// }
+// Buffer Mem { 
+//     Type: Ok(Buffer), 
+//     Flags: Ok(READ_WRITE), 
+//     Size: Ok(8192), 
+//     HostPtr: Ok(None), 
+//     MapCount: Ok(0), 
+//     ReferenceCount: Ok(2), 
+//     Context: Ok(Context(0x5584ae64f138)), 
+//     AssociatedMemobject: Ok(None), 
+//     Offset: Ok(0) 
+// }
+// Image { 
+//     ElementSize: Ok(4), 
+//     RowPitch: Ok(8192), 
+//     SlicePitch: Ok(0), 
+//     Width: Ok(2048), 
+//     Height: Ok(0), 
+//     Depth: Ok(0), 
+//     ArraySize: Ok(0), 
+//     Buffer: Ok(None), 
+//     NumMipLevels: Ok(0), 
+//     NumSamples: Ok(0) 
+// } 
+// Mem { 
+//     Type: Ok(Image1d), 
+//     Flags: Ok(READ_WRITE), 
+//     Size: Ok(8192), 
+//     HostPtr: Ok(None), 
+//     MapCount: Ok(0), 
+//     ReferenceCount: Ok(1), 
+//     Context: Ok(Context(0x5584ae64f138)), 
+//     AssociatedMemobject: Ok(None), 
+//     Offset: Ok(0) 
+// }
+// Sampler { 
+//     ReferenceCount: Ok(1), 
+//     Context: Ok(Context(0x5584ae64f138)), 
+//     NormalizedCoords: Ok(false), 
+//     AddressingMode: Ok(None), 
+//     FilterMode: Ok(Nearest) 
+// }
+// Program (terse) { 
+//     KernelNames: 'multiply', 
+//     NumDevices: 1, 
+//     ReferenceCount: 1, 
+//     Context: Context(0x5584ae64f138) 
+// }
+// Kernel { 
+//     FunctionName: Ok(multiply), 
+//     ReferenceCount: Ok(1), 
+//     Context: Ok(Context(0x5584ae64f138)), 
+//     Program: Ok(Program(0x5584af60fa68)), 
+//     Attributes: Ok() } 
+// WorkGroup { 
+//     WorkGroupSize: Err(Kernel work-group info unavailable), 
+//     CompileWorkGroupSize: Err(Kernel work-group info unavailable), 
+//     LocalMemSize: Err(Kernel work-group info unavailable), 
+//     PreferredWorkGroupSizeMultiple: Err(Kernel work-group info unavailable), 
+//     PrivateMemSize: Err(Kernel work-group info unavailable) 
+// }
+// EventList { 
+//     inner: Array(EventArray { array: [
+//         Event(Event(0x5584af6673b8)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0)), 
+//         Event(Event(0x0))], 
+//         len: 1 }) 
+//     }
+// Event { 
+//     CommandQueue: Ok(CommandQueue(0x5584ae6732d8)), 
+//     CommandType: Ok(WriteBuffer), ReferenceCount: Ok(1), 
+//     CommandExecutionStatus: Ok(Complete), 
+//     Context: Ok(Context(0x5584ae64f138)) 
+// }
