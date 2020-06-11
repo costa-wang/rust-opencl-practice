@@ -1,5 +1,5 @@
 [package]
-name = "multiply_by_scalar"
+name = "async_menagerie"
 version = "0.1.0"
 authors = ["costa-wang <3162284013@qq.com>"]
 edition = "2018"
@@ -8,4 +8,9 @@ edition = "2018"
 
 [dependencies]
 ocl = { version = "0.19.3" }
+colorify = { version = "0.2.3" }
+futures = { version = "0.1" }
+futures-cpupool = { version = "0.1.8" }
+chrono = { version = "0.4.11" }
 ocl-extras = { version = "0.1.1" }
+rand ={ version = "0.4" }

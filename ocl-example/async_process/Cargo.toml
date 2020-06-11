@@ -1,0 +1,14 @@
+[package]
+name = "async_process"
+version = "0.1.0"
+authors = ["costa-wang <3162284013@qq.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ocl = { version = "0.19.3" }
+colorify = { version = "0.2.3" }
+futures = { version = "0.1" }
+futures-cpupool = { version = "0.1.8" }
+chrono = { version = "0.4.11" }
