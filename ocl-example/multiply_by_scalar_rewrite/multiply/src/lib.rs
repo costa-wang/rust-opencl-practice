@@ -45,19 +45,25 @@ impl MultiplyKernel
     }
 
     pub fn multiply(&mut self,work_size: usize,coeff:f32){
+        // let kern = self.proque.kernel_builder("multiply_by_scalar")
+        // .arg(coeff)
+        // .arg(None::<&Buffer<f32>>)
+        // .arg_named("result", None::<&Buffer<f32>>)
+        // .build().unwrap();
+
         let kern = self.proque.kernel_builder("multiply_by_scalar")
         .arg(coeff)
-        .arg(None::<&Buffer<f32>>)
-        .arg_named("result", None::<&Buffer<f32>>)
+        .arg(&self.source_buffer)
+        .arg(&self.result_buffer)
         .build().unwrap();
         
         // Set our named argument. The Option<_> wrapper is, well... optional:
-        kern.set_arg("result", &self.result_buffer);
-        // We can also set arguments (named or not) by index. Just for
-        // demonstration, we'll set one using an option:
-        kern.set_arg(0, &coeff);
-        kern.set_arg(1, Some(&self.source_buffer));
-        kern.set_arg(2, &self.result_buffer);
+        // kern.set_arg("result", &self.result_buffer);
+        // // We can also set arguments (named or not) by index. Just for
+        // // demonstration, we'll set one using an option:
+        // kern.set_arg(0, &coeff);
+        // kern.set_arg(1, Some(&self.source_buffer));
+        // kern.set_arg(2, &self.result_buffer);
         
         unsafe { kern.enq();}
         // Read results from the device into result_buffer's local vector:
