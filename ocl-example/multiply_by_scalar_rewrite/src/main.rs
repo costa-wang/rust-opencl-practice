@@ -11,7 +11,7 @@ const COEFF: f32 = 5432.1;
 fn main() {
     let vec_source = ocl_extras::scrambled_vec((0.0, 20.0), WORK_SIZE);
     let mut kernel = MultiplyKernel::create(WORK_SIZE,&vec_source).unwrap();
-    kernel.multiply(WORK_SIZE,COEFF);
+    kernel.multiply(COEFF);
 
     let mut vec_result = vec![0.0f32; WORK_SIZE];
     kernel.result_buffer.read(&mut vec_result).enq();

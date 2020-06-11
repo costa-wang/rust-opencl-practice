@@ -16,7 +16,7 @@ pub struct MultiplyKernel
 
 impl MultiplyKernel
 {
-    pub fn create(work_size: usize,vec_source: &Vec<f32>) -> Result<MultiplyKernel,Error> {
+    pub fn create(work_size: usize,vec_source:&Vec<f32>) -> Result<MultiplyKernel,Error> {
         // let devices = &GPU_NVIDIA_DEVICES;
         // if devices.is_empty() {
         //     return Err(GPUError::Simple("No working GPUs found!"));
@@ -44,7 +44,7 @@ impl MultiplyKernel
         })
     }
 
-    pub fn multiply(&mut self,work_size: usize,coeff:f32){
+    pub fn multiply(&mut self,coeff: f32){
         // let kern = self.proque.kernel_builder("multiply_by_scalar")
         // .arg(coeff)
         // .arg(None::<&Buffer<f32>>)
