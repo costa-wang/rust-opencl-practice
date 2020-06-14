@@ -130,22 +130,22 @@ pub fn async_process() -> OclResult<()> {
         // futures::future::and_then::AndThen<
         // ocl::async::future_mem_map::FutureMemMap<ocl_core_vector::vectors::Float4>, 
         // core::result::Result<usize, ocl::error::Error>, async_process::async_process::{{closure}}>
-        let write = future_write_data.and_then(move |mut data| {
-            for _ in 0..redundancy_count {
-                for val in data.iter_mut() {
-                    *val = Float4::new(50., 50., 50., 50.);
-                }
-            }
+        // let write = future_write_data.and_then(move |mut data| {
+        //     for _ in 0..redundancy_count {
+        //         for val in data.iter_mut() {
+        //             *val = Float4::new(50., 50., 50., 50.);
+        //         }
+        //     }
 
-            println!("Mapped write complete (task: {}). ", task_id);
-            Ok(task_id)
-        });
+        //     println!("Mapped write complete (task: {}). ", task_id);
+        //     Ok(task_id)
+        // });
 
-        if task_id == 0 {
-            print_type_name(&write);
-        }
+        // if task_id == 0 {
+        //     print_type_name(&write);
+        // }
 
-        let spawned_write = thread_pool.spawn(write);
+        // let spawned_write = thread_pool.spawn(write);
 
         // (2) KERNEL: Run kernel: Add 100 to everything (total should now be 150):
         let mut kern_event = Event::empty();
@@ -167,29 +167,29 @@ pub fn async_process() -> OclResult<()> {
         };
         
 
-        let read = future_read_data.and_then(move |data| {
-                let mut val_count = 0usize;
+        // let read = future_read_data.and_then(move |data| {
+        //         let mut val_count = 0usize;
 
-                for _ in 0..redundancy_count {
-                    for val in data.iter() {
-                        let correct_val = Float4::new(150., 150., 150., 150.);
-                        if *val != correct_val {
-                            return Err(format!("Result value mismatch: {:?} != {:?}", val, correct_val).into())
-                        }
-                        val_count += 1;
-                    }
-                }
+        //         for _ in 0..redundancy_count {
+        //             for val in data.iter() {
+        //                 let correct_val = Float4::new(150., 150., 150., 150.);
+        //                 if *val != correct_val {
+        //                     return Err(format!("Result value mismatch: {:?} != {:?}", val, correct_val).into())
+        //                 }
+        //                 val_count += 1;
+        //             }
+        //         }
 
-                println!("Mapped read and verify complete (task: {}). ", task_id);
+        //         println!("Mapped read and verify complete (task: {}). ", task_id);
 
-                Ok(val_count)
-            });
+        //         Ok(val_count)
+        //     });
 
-        let spawned_read = thread_pool.spawn(read);
-        // Presumably this could be either `join` or `and_then`:
-        let offload = spawned_write.join(spawned_read);
+        // let spawned_read = thread_pool.spawn(read);
+        // // Presumably this could be either `join` or `and_then`:
+        // let offload = spawned_write.join(spawned_read);
 
-        offloads.push_back(offload);
+        // offloads.push_back(offload);
     }
 
     println!("Running tasks...");
@@ -197,19 +197,19 @@ pub fn async_process() -> OclResult<()> {
     let correct_val_count = Cell::new(0usize);
 
     // Finish things up (basically a thread join):
-    stream::futures_unordered(offloads).for_each(|(task_id, val_count)| {
-        correct_val_count.set(correct_val_count.get() + val_count);
-        println!("Task: {} has completed.", task_id);
-        Ok(())
-    }).wait()?;
+    // stream::futures_unordered(offloads).for_each(|(task_id, val_count)| {
+    //     correct_val_count.set(correct_val_count.get() + val_count);
+    //     println!("Task: {} has completed.", task_id);
+    //     Ok(())
+    // }).wait()?;
 
-    let run_duration = chrono::Local::now() - start_time - create_duration;
-    let total_duration = chrono::Local::now() - start_time;
+    // let run_duration = chrono::Local::now() - start_time - create_duration;
+    // let total_duration = chrono::Local::now() - start_time;
 
-    printlnc!(yellow_bold: "All {} (float4) result values are correct! \n\
-        Durations => | Create/Enqueue: {} | Run: {} | Total: {} |",
-        correct_val_count.get() / redundancy_count, fmt_duration(create_duration),
-        fmt_duration(run_duration), fmt_duration(total_duration));
+    // printlnc!(yellow_bold: "All {} (float4) result values are correct! \n\
+    //     Durations => | Create/Enqueue: {} | Run: {} | Total: {} |",
+    //     correct_val_count.get() / redundancy_count, fmt_duration(create_duration),
+    //     fmt_duration(run_duration), fmt_duration(total_duration));
     Ok(())
 }
 
