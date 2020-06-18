@@ -81,7 +81,8 @@ impl<E: Engine> Circuit<E> for MyCircuit {
 // Create parameters for our circuit. In a production deployment these would
 // be generated securely using a multiparty computation.
 pub fn main(){
-let params = {
+
+    let params = {
     let c = MyCircuit { preimage: None };
     groth16::generate_random_parameters::<Bls12, _, _>(c, &mut OsRng).unwrap()
 };

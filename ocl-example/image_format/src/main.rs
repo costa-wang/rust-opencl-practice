@@ -1,7 +1,8 @@
 #[macro_use] extern crate colorify;
 extern crate ocl;
-use ocl::{Result as OclResult, Platform, Device, Context, Image};
+use ocl::{Result as OclResult, Platform, Device, Context, Image, Queue};
 use ocl::enums::MemObjectType;
+use ocl::core::{OclPrm};
 
 fn img_formats() -> OclResult<()> {
     for (p_idx, platform) in Platform::list().into_iter().enumerate() {
@@ -15,6 +16,18 @@ fn img_formats() -> OclResult<()> {
                 MemObjectType::Image2d)?;
 
             println!("Image Formats: {:#?}.", sup_img_formats);
+
+            // let queue = Queue::new(&context, device, Some(ocl::core::QUEUE_PROFILING_ENABLE))?;
+
+            // let image = Image::<u8>::builder()
+            //     .dims(2048)
+            //     .queue(queue.clone())
+            //     .build()?;
+
+            // fn print_image_info<S: OclPrm>(image: &Image<S>) {
+            //         printlnc!(peach: "{}", image);
+            // }
+            // print_image_info(&image);
         }
     }
     Ok(())
